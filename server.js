@@ -28,7 +28,8 @@ function writeVisits(total) {
 let totalVisits = readVisits();
 
 function broadcast() {
-  const payload = `data: ${JSON.stringify({ total: totalVisits })}\n\n`;
+  const activeVisitors = clients.size;
+  const payload = `data: ${JSON.stringify({ total: activeVisitors })}\n\n`;
   for (const client of clients) {
     client.write(payload);
   }
@@ -101,15 +102,12 @@ const server = http.createServer((req, res) => {
 
   if (pathname === '/api/visits') {
     if (req.method === 'GET') {
-      sendJson(res, 200, { total: totalVisits });
+      sendJson(res, 200, { total: clients.size });
       return;
     }
 
     if (req.method === 'POST') {
-      totalVisits += 1;
-      writeVisits(totalVisits);
-      broadcast();
-      sendJson(res, 200, { total: totalVisits });
+      sendJson(res, 200, { total: clients.size });
       return;
     }
   }
@@ -122,11 +120,14 @@ const server = http.createServer((req, res) => {
       'Access-Control-Allow-Origin': '*'
     });
 
-    res.write(`data: ${JSON.stringify({ total: totalVisits })}\n\n`);
     clients.add(res);
+    broadcast();
+
+    res.write(': keepalive\n\n');
 
     req.on('close', () => {
       clients.delete(res);
+      broadcast();
     });
 
     return;

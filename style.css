@@ -332,9 +332,9 @@ body::before {
   min-height: 72px;
   padding: 0.7rem 0.9rem;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.16);
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  box-shadow: 0 12px 26px rgba(65, 35, 54, 0.18);
+  background: rgba(72, 30, 50, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  box-shadow: 0 12px 30px rgba(25, 8, 18, 0.28);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
@@ -354,10 +354,12 @@ body::before {
 }
 
 #visitorCount {
-  font-size: clamp(1.05rem, 2vw, 1.45rem);
-  color: var(--rose-deep);
+  font-size: clamp(1.15rem, 2vw, 1.6rem);
+  color: #fff7fb;
   font-weight: 800;
   line-height: 1;
+  letter-spacing: 0.04em;
+  text-shadow: 0 2px 10px rgba(255, 136, 176, 0.4);
 }
 
 h1 {

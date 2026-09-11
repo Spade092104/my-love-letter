@@ -8,23 +8,12 @@ const signature = document.querySelector('.signature');
 const visitorCount = document.getElementById('visitorCount');
 
 const updateVisitorCount = async () => {
-  const fallbackKey = 'loveLetterVisitorCount';
-
   try {
-    const response = await fetch('http://localhost:3000/api/visits', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-
+    const response = await fetch('http://localhost:3000/api/visits');
     const data = await response.json();
     visitorCount.textContent = Number(data.total || 0).toLocaleString();
-    localStorage.setItem(fallbackKey, String(data.total || 0));
   } catch (error) {
-    const savedCount = Number(localStorage.getItem(fallbackKey) || 0) + 1;
-    localStorage.setItem(fallbackKey, String(savedCount));
-    visitorCount.textContent = savedCount.toLocaleString();
+    visitorCount.textContent = '0';
   }
 };
 
@@ -42,23 +31,19 @@ const openLetter = () => {
 };
 
 const loadLiveVisitorCount = async () => {
-  try {
-    const response = await fetch('http://localhost:3000/api/visits');
-    const data = await response.json();
-    visitorCount.textContent = Number(data.total || 0).toLocaleString();
-  } catch (error) {
-    visitorCount.textContent = '1';
-  }
+  await updateVisitorCount();
 
   const eventSource = new EventSource('http://localhost:3000/events');
   eventSource.onmessage = (event) => {
     const data = JSON.parse(event.data);
     visitorCount.textContent = Number(data.total || 0).toLocaleString();
   };
+  eventSource.onerror = () => {
+    visitorCount.textContent = '0';
+  };
 };
 
 mailBtn.addEventListener('click', openLetter);
-updateVisitorCount();
 loadLiveVisitorCount();
 
 revealBtn.addEventListener('click', () => {
