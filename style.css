@@ -337,9 +337,11 @@ body::before {
 }
 
 .page-visitor {
-  position: relative;
-  z-index: 2;
-  margin: 0 auto 1.5rem;
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 20;
+  margin: 0;
 }
 
 .visitor-label {
@@ -539,6 +541,13 @@ button:active {
 @media (max-width: 520px) {
   body {
     padding: 22px 14px;
+  }
+
+  .page-visitor {
+    top: 14px;
+    right: 14px;
+    transform: scale(0.92);
+    transform-origin: top right;
   }
 
   .envelope {
