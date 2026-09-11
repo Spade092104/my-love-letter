@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>For My Sweet Girl</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="bg-hearts" aria-hidden="true">
+      <span>❤</span>
+      <span>❤</span>
+      <span>❤</span>
+      <span>❤</span>
+      <span>❤</span>
+      <span>❤</span>
+      <span>❤</span>
+      <span>❤</span>
+    </div>
+
+    <div class="glow glow-one" aria-hidden="true"></div>
+    <div class="glow glow-two" aria-hidden="true"></div>
+
+    <div class="mail-scene">
+      <div class="envelope-wrapper" id="envelopeWrapper">
+        <div class="envelope" aria-label="Love letter envelope">
+          <div class="envelope-top"></div>
+          <div class="envelope-left"></div>
+          <div class="envelope-right"></div>
+          <div class="flap"></div>
+          <div class="letter-preview">
+            <div class="seal">❤</div>
+            <p>For My Love</p>
+          </div>
+        </div>
+        <button id="openMailBtn" type="button">Open mail</button>
+      </div>
+
+      <main class="letter-container hidden" id="letterContainer">
+        <div class="paper">
+          <header class="header-card">
+            <p class="tagline">My dearest love,</p>
+            <h1>To the girl who holds my heart</h1>
+            <div class="divider" aria-hidden="true">❤</div>
+          </header>
+
+          <div class="photo-reveal hidden-photo" id="photoReveal">
+            <img src="image/IMG_20260723_191451_376.jpg" alt="A special moment with my love" />
+          </div>
+
+          <div class="message">
+            <p>
+              Yesterday, when I heard that you were in the hospital because of a headache,
+              my heart felt heavy and my mind could not stop worrying. 
+              
+              I wanted to be there with you, to hold your hand and tell you that everything will be alright. 
+              But I can't do it beacuase of the distance between us. 
+              I hope you know that even though I am not physically there, my heart is always with you.
+
+            <p>
+              Seeing you hurt, even for a moment, reminded me how deeply I love you. You are not
+              just someone I care about—you are the peace in my chaos, the smile in my hardest days,
+              and the dream I never want to wake up from. Every time I think of you, my heart becomes
+              softer, warmer, and more grateful.
+            </p>
+            <p>
+              I hope you are resting, healing, and feeling better every single day. I am so proud of your
+              strength, and I am so lucky to love someone as beautiful, kind, and precious as you.
+              Please take care of yourself, my love. I am always with you, even from afar.
+            </p>
+          </div>
+
+          <div class="love-note">
+            <p>My love for you is not loud, but it is steady.</p>
+            <blockquote>And it will always be yours.</blockquote>
+          </div>
+
+          <div class="signature">
+            <p>With all my love,</p>
+            <h2>Your forever person</h2>
+          </div>
+
+          <button id="revealBtn" type="button">Open my heart</button>
+        </div>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
