@@ -5,6 +5,16 @@ const revealBtn = document.getElementById('revealBtn');
 const photoReveal = document.getElementById('photoReveal');
 const message = document.querySelector('.message');
 const signature = document.querySelector('.signature');
+const visitorCount = document.getElementById('visitorCount');
+
+const updateVisitorCount = () => {
+  const countKey = 'loveLetterVisitorCount';
+  const currentCount = Number(localStorage.getItem(countKey) || 0);
+  const nextCount = currentCount + 1;
+
+  localStorage.setItem(countKey, String(nextCount));
+  visitorCount.textContent = nextCount.toLocaleString();
+};
 
 const openLetter = () => {
   envelopeWrapper.classList.add('opened');
@@ -20,6 +30,7 @@ const openLetter = () => {
 };
 
 mailBtn.addEventListener('click', openLetter);
+updateVisitorCount();
 
 revealBtn.addEventListener('click', () => {
   message.classList.toggle('hidden');

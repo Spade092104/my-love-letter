@@ -324,6 +324,38 @@ body::before {
   font-weight: 800;
 }
 
+.visitor-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.7rem 1.1rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(255, 107, 154, 0.12), rgba(255, 255, 255, 0.8));
+  border: 1px solid rgba(214, 63, 119, 0.16);
+  box-shadow: 0 8px 22px rgba(122, 59, 85, 0.08);
+}
+
+.page-visitor {
+  position: relative;
+  z-index: 2;
+  margin: 0 auto 1.5rem;
+}
+
+.visitor-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.14rem;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  font-weight: 700;
+}
+
+#visitorCount {
+  font-size: clamp(1.15rem, 2vw, 1.5rem);
+  color: var(--rose-deep);
+  font-weight: 800;
+}
+
 h1 {
   margin: 0;
   font-family: "Cormorant Garamond", serif;
