@@ -1,17 +1,19 @@
 :root {
-  --bg-1: #1b1024;
-  --bg-2: #311a3d;
-  --rose: #ff5d8f;
-  --rose-deep: #d83c6b;
-  --rose-soft: #ffe0eb;
-  --gold: #f8d77a;
-  --paper: rgba(255, 249, 252, 0.92);
-  --paper-strong: rgba(255, 255, 255, 0.94);
-  --text: #42263a;
-  --shadow: rgba(17, 9, 22, 0.32);
-  --envelope: #f7d3df;
-  --envelope-dark: #e6b8ca;
-  --envelope-line: #d18fa5;
+  --bg-1: #170d1d;
+  --bg-2: #2d1731;
+  --bg-3: #4a2d4d;
+  --rose: #ff6b9a;
+  --rose-deep: #d63f77;
+  --rose-soft: #ffeaf4;
+  --rose-pale: rgba(255, 107, 154, 0.12);
+  --paper: rgba(255, 250, 252, 0.96);
+  --paper-strong: rgba(255, 255, 255, 0.99);
+  --text: #4a2e3a;
+  --text-soft: #6e4a5a;
+  --shadow: rgba(17, 9, 22, 0.28);
+  --envelope: #f8d9e5;
+  --envelope-dark: #e8b3c8;
+  --envelope-line: #d592ae;
 }
 
 * {
@@ -22,7 +24,6 @@ html, body {
   margin: 0;
   min-height: 100%;
   font-family: "Inter", sans-serif;
-  background: linear-gradient(135deg, var(--bg-1), var(--bg-2));
   color: var(--text);
 }
 
@@ -34,6 +35,21 @@ body {
   overflow-y: auto;
   position: relative;
   padding: 32px 20px 48px;
+  background:
+    radial-gradient(circle at 12% 10%, rgba(255, 131, 180, 0.2), transparent 25%),
+    radial-gradient(circle at 82% 18%, rgba(168, 144, 255, 0.18), transparent 26%),
+    linear-gradient(135deg, var(--bg-1), var(--bg-2) 52%, var(--bg-3));
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0));
 }
 
 .bg-hearts {
@@ -46,9 +62,10 @@ body {
 .bg-hearts span {
   position: absolute;
   font-size: clamp(1.2rem, 2vw, 2rem);
-  color: rgba(255, 255, 255, 0.58);
+  color: rgba(255, 255, 255, 0.52);
   animation: floatUp linear infinite;
   opacity: 0.8;
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.15));
 }
 
 .bg-hearts span:nth-child(1) { left: 10%; bottom: -20%; animation-duration: 14s; }
@@ -63,23 +80,23 @@ body {
 .glow {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.45;
+  filter: blur(70px);
+  opacity: 0.52;
   pointer-events: none;
 }
 
 .glow-one {
-  width: 220px;
-  height: 220px;
-  background: rgba(255, 110, 160, 0.35);
+  width: 240px;
+  height: 240px;
+  background: rgba(255, 110, 160, 0.32);
   top: 8%;
   left: 12%;
 }
 
 .glow-two {
-  width: 240px;
-  height: 240px;
-  background: rgba(160, 133, 255, 0.2);
+  width: 260px;
+  height: 260px;
+  background: rgba(160, 133, 255, 0.22);
   bottom: 10%;
   right: 14%;
 }
@@ -103,8 +120,9 @@ body {
   z-index: 1;
   display: grid;
   place-items: center;
-  gap: 2rem;
+  gap: 2.25rem;
   width: 100%;
+  max-width: 920px;
   padding-bottom: 1rem;
 }
 
@@ -113,9 +131,13 @@ body {
   position: relative;
   z-index: 1;
   opacity: 0;
-  transform: translateY(32px) scale(0.8);
+  transform: translateY(32px) scale(0.92);
   pointer-events: none;
   transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.letter-container.hidden {
+  visibility: hidden;
 }
 
 .letter-container.visible {
@@ -158,14 +180,14 @@ body {
   background: linear-gradient(180deg, var(--envelope), var(--envelope-dark));
   border: 1px solid rgba(153, 79, 101, 0.25);
   border-radius: 18px;
-  box-shadow: 0 22px 40px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 22px 42px rgba(0, 0, 0, 0.18);
   overflow: hidden;
   transition: transform 0.9s ease, box-shadow 0.9s ease;
 }
 
 .envelope-wrapper.opened .envelope {
   transform: translateY(-12px) rotateX(2deg);
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
 }
 
 .envelope-top,
@@ -173,7 +195,7 @@ body {
 .envelope-right {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0));
+  background: linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0));
 }
 
 .envelope-left,
@@ -181,7 +203,7 @@ body {
   width: 50%;
   height: 100%;
   top: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.18), rgba(220,130,170,0.06));
+  background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(220,130,170,0.04));
 }
 
 .envelope-left {
@@ -203,7 +225,7 @@ body {
 .flap {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, #f8c9d9, #ed9db7);
+  background: linear-gradient(180deg, #f8cedd, #eea2bc);
   clip-path: polygon(0 0, 50% 56%, 100% 0);
   transform-origin: top center;
   transition: transform 0.9s ease;
@@ -222,10 +244,10 @@ body {
   transform: translate(-50%, -50%);
   width: min(72%, 340px);
   height: 190px;
-  background: rgba(255, 255, 255, 0.85);
-  border: 1px solid rgba(165, 98, 128, 0.25);
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(165, 98, 128, 0.24);
   border-radius: 14px;
-  box-shadow: 0 10px 25px rgba(90, 36, 63, 0.12);
+  box-shadow: 0 12px 28px rgba(90, 36, 63, 0.12);
   display: grid;
   place-items: center;
   text-align: center;
@@ -235,7 +257,7 @@ body {
 
 .envelope-wrapper.opened .letter-preview {
   transform: translate(-50%, -35%) scale(1.02);
-  opacity: 0.16;
+  opacity: 0.14;
 }
 
 .seal {
@@ -248,6 +270,7 @@ body {
   place-items: center;
   font-size: 1.5rem;
   margin-bottom: 0.3rem;
+  box-shadow: 0 0 18px rgba(255, 107, 154, 0.18);
 }
 
 .letter-preview p {
@@ -260,14 +283,18 @@ body {
 }
 
 #openMailBtn {
-  margin-top: 1rem;
+  margin-top: 1.2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 180px;
 }
 
 .paper {
   background: linear-gradient(180deg, var(--paper-strong), var(--paper));
   border: 1px solid rgba(255, 255, 255, 0.7);
   border-radius: 30px;
-  box-shadow: 0 28px 60px var(--shadow);
+  box-shadow: 0 30px 70px rgba(17, 9, 22, 0.22);
   padding: clamp(1.8rem, 4vw, 3.2rem);
   position: relative;
   overflow: hidden;
@@ -291,7 +318,7 @@ body {
 .tagline {
   margin: 0 0 0.75rem;
   color: var(--rose-deep);
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   letter-spacing: 0.22rem;
   text-transform: uppercase;
   font-weight: 800;
@@ -301,9 +328,9 @@ h1 {
   margin: 0;
   font-family: "Cormorant Garamond", serif;
   font-size: clamp(2.7rem, 6vw, 4.8rem);
-  line-height: 0.95;
+  line-height: 0.92;
   color: #4f2541;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.05em;
 }
 
 .mini-heading {
@@ -330,6 +357,7 @@ h1 {
 
 .message {
   opacity: 0.96;
+  transition: opacity 0.45s ease, transform 0.45s ease;
 }
 
 .message p {
@@ -373,6 +401,7 @@ h1 {
 .signature {
   margin-top: 1.8rem;
   text-align: right;
+  transition: opacity 0.45s ease, transform 0.45s ease;
 }
 
 .signature p {
