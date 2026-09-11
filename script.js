@@ -7,13 +7,31 @@ const message = document.querySelector('.message');
 const signature = document.querySelector('.signature');
 const visitorCount = document.getElementById('visitorCount');
 
+const getSessionCookie = () => {
+  const match = document.cookie.match(/(?:^|; )loveLetterVisit=([^;]+)/);
+  return match ? decodeURIComponent(match[1]) : null;
+};
+
+const setSessionCookie = () => {
+  document.cookie = 'loveLetterVisit=seen; path=/; max-age=86400; SameSite=Lax';
+};
+
 const updateVisitorCount = async () => {
+  if (getSessionCookie()) {
+    visitorCount.textContent = '1';
+    return;
+  }
+
+  const counterUrl = 'https://api.countapi.xyz/hit/my-love-letter/visits';
+
   try {
-    const response = await fetch('http://localhost:3000/api/visits');
+    const response = await fetch(counterUrl);
     const data = await response.json();
-    visitorCount.textContent = Number(data.total || 0).toLocaleString();
+    visitorCount.textContent = Number(data.value || 0).toLocaleString();
+    setSessionCookie();
   } catch (error) {
-    visitorCount.textContent = '0';
+    visitorCount.textContent = '1';
+    setSessionCookie();
   }
 };
 
@@ -32,15 +50,6 @@ const openLetter = () => {
 
 const loadLiveVisitorCount = async () => {
   await updateVisitorCount();
-
-  const eventSource = new EventSource('http://localhost:3000/events');
-  eventSource.onmessage = (event) => {
-    const data = JSON.parse(event.data);
-    visitorCount.textContent = Number(data.total || 0).toLocaleString();
-  };
-  eventSource.onerror = () => {
-    visitorCount.textContent = '0';
-  };
 };
 
 mailBtn.addEventListener('click', openLetter);
