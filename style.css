@@ -331,9 +331,11 @@ body::before {
   gap: 0.75rem;
   padding: 0.7rem 1.1rem;
   border-radius: 999px;
-  background: linear-gradient(135deg, rgba(255, 107, 154, 0.12), rgba(255, 255, 255, 0.8));
-  border: 1px solid rgba(214, 63, 119, 0.16);
-  box-shadow: 0 8px 22px rgba(122, 59, 85, 0.08);
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 10px 26px rgba(65, 35, 54, 0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .page-visitor {
@@ -342,6 +344,12 @@ body::before {
   right: 24px;
   z-index: 20;
   margin: 0;
+  animation: floatBadge 4s ease-in-out infinite;
+}
+
+@keyframes floatBadge {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-4px); }
 }
 
 .visitor-label {
